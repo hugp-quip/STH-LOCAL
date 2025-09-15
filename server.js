@@ -7,9 +7,8 @@ import https from "https";
 import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import os from "os";
-import { publicIpv4 } from "public-ip"
-import { internalIpV4, internalIpV4Sync } from "internal-ip"
+import network from "network"
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -25,7 +24,7 @@ var app = express();
 // Create an HTTP service.
 const server = https.createServer(options, app);
 server.listen(8080);
-
+console.log("Server listening at: https://localhost:8080")
 
 app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
 
@@ -51,11 +50,22 @@ app.get("/index.wasm", (req, res) => {
 app.get("/Resources.pck", (req, res) => {
   res.sendFile(__dirname + '/public/Resources.pck')
 })
-app.get("/server_ip", (req, res)=>{
-  let serverIpAddress = "192.168.0.94";
-  console.log(serverIpAddress)
+
+
+//essa request retorna o ip do server, por algum motivo essa biblioteca demora muito para retornar o ip, então eu decidi simplesmente mandar o node esperar um tempo x 💀
+console.log("Finding this computer's ip adress:")
+let serverIpAddress;
+network.get_private_ip((err, ip) => {
+    serverIpAddress = ip
+    console.log("final-ip-found: "+serverIpAddress)
+    console.log("ip-find-error: "+err)
+})
+
+app.get("/server_ip", async (req, res)=>{
+  console.log("ip-fetched: "+serverIpAddress)
   res.json({ip:serverIpAddress})
 })
+
 app.use(express.json())
 app.use(express.static('node_modules'));
 app.use(express.static('src'));

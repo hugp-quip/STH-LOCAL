@@ -14,13 +14,18 @@
     "browserify": "^17.0.1",
     "express": "^5.1.0",
     "internal-ip": "^8.0.0",
+    "network": "^0.7.0",
     "public-ip": "^7.0.1",
-    "qrcode": "^1.5.4"
+    "qrcode": "^1.5.4",
+    "win32": "^7.2.0",
+    "wmic": "^1.1.1"
   },
-    "pkg": {
+  "pkg": {
     "scripts": "build/**/*.js",
     "assets": "views/**/*",
-    "targets": [ "latest-win-x64" ],
+    "targets": [
+      "latest-win-x64"
+    ],
     "outputPath": "dist"
   },
   "devDependencies": {

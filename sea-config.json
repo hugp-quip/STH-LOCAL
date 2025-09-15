@@ -1,5 +1,0 @@
-{
-	"main":"server.js",
-	"output":"prepd.blob",
-	"type":"module"
-}
