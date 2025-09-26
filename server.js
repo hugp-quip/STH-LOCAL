@@ -27,7 +27,7 @@ console.log("Server listening at: https://localhost:8080")
 
 app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
 
-app.get("/", (req, res) => {console.log("classmate"); res.sendFile(__dirname+"/public/index.html")})
+app.get("/", (req, res) => {console.log("classmate"); res.sendFile(__dirname+"/public/Index.html")})
 
 app.get("/scripts/qrcode", (req, res)=>{
   console.log("asdfadfgasdg")
@@ -40,11 +40,11 @@ app.get("/scripts/gameStart", (req, res)=>{
 })
 
 app.get("/index.pck", (req, res) => {
-  res.sendFile(__dirname + '/public/index.pck')
+  res.sendFile(__dirname + '/public/Index.pck')
 })
 
 app.get("/index.wasm", (req, res) => {
-  res.sendFile(__dirname + '/public/index.wasm')
+  res.sendFile(__dirname + '/public/Index.wasm')
 })
 app.get("/Resources.pck", (req, res) => {
   res.sendFile(__dirname + '/public/Resources.pck')
