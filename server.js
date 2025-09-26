@@ -25,8 +25,8 @@ var app = express();
 // Create an HTTP service.
 const server = https.createServer(options, app);
 server.listen(configs.port);
-// server.keepAliveTimeout = configs.keepAliveTimeout;
-// server.headersTimeout = configs.headersTimeout; 
+server.keepAliveTimeout = configs.keepAliveTimeout;
+server.headersTimeout = configs.headersTimeout; 
 console.log("Server listening at: https://localhost:" + configs.port)
 
 app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
@@ -63,7 +63,7 @@ app.get("/scripts/gameStart", (req, res)=>{
 app.get("/index.pck", (req, res) => {
   const filePath = __dirname + '/public/Index.pck'
   const stat = fs.statSync(filePath);
-
+  
   res.writeHead(200, {
     'Content-Type': 'text/javascript', // Adjust content type as needed
     'Content-Length': stat.size,
