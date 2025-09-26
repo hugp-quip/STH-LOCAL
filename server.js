@@ -25,8 +25,8 @@ var app = express();
 // Create an HTTP service.
 const server = https.createServer(options, app);
 server.listen(configs.port);
-server.keepAliveTimeout = configs.keepAliveTimeout;
-server.headersTimeout = configs.headersTimeout; 
+// server.keepAliveTimeout = configs.keepAliveTimeout;
+// server.headersTimeout = configs.headersTimeout; 
 console.log("Server listening at: https://localhost:" + configs.port)
 
 app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
@@ -65,7 +65,7 @@ app.get("/index.pck", (req, res) => {
   const stat = fs.statSync(filePath);
 
   res.writeHead(200, {
-    'Content-Type': 'application/pdf', // Adjust content type as needed
+    'Content-Type': 'text/javascript', // Adjust content type as needed
     'Content-Length': stat.size,
     'Content-Disposition': 'attachment; filename="Index.pck"'
   })
@@ -77,7 +77,7 @@ app.get("/index.wasm", (req, res) => {
   const stat = fs.statSync(filePath);
 
   res.writeHead(200, {
-    'Content-Type': 'application/pdf', // Adjust content type as needed
+    'Content-Type': 'text/javascript', // Adjust content type as needed
     'Content-Length': stat.size,
     'Content-Disposition': 'attachment; filename="Index.wasm"'
   })
@@ -85,12 +85,12 @@ app.get("/index.wasm", (req, res) => {
   readStream.pipe(res);
 })
 
-app.get('/public/Resources.pck', (req, res) => {
+app.get('/Resources.pck', (req, res) => {
   const filePath = __dirname + '/public/Resources.pck'
   const stat = fs.statSync(filePath);
 
   res.writeHead(200, {
-    'Content-Type': 'application/pdf', // Adjust content type as needed
+    'Content-Type': 'text/javascript', // Adjust content type as needed
     'Content-Length': stat.size,
     'Content-Disposition': 'attachment; filename="Resources.pck"'
   })
@@ -98,9 +98,9 @@ app.get('/public/Resources.pck', (req, res) => {
   readStream.pipe(res);
 })
 
-app.get("/Resources.pck", (req, res) => {
-  res.sendFile(__dirname + '/public/Resources.pck')
-})
+// app.get("/Resources.pck", (req, res) => {
+//   res.sendFile(__dirname + '/public/Resources.pck')
+// })
 
 //essa request retorna o ip do server, por algum motivo essa biblioteca demora muito para retornar o ip, então eu decidi simplesmente mandar o node esperar um tempo x 💀
 console.log("Finding this computer's ip adress:")
@@ -124,7 +124,7 @@ app.get("/server_ip", async (req, res)=>{
   console.log("ip-fetched: "+serverIpAddress)
   res.json({ip:serverIpAddress})
 })
-
+//app.use(cors)
 app.use(express.json())
 app.use(express.static('node_modules'));
 app.use(express.static('src'));
