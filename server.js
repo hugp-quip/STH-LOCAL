@@ -8,7 +8,7 @@ import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import os from "os";
-import configs from "./server_config";
+import configs from "./server_config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
