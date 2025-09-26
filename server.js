@@ -49,17 +49,58 @@ app.get("/scripts/gameStart", (req, res)=>{
   res.sendFile(__dirname + '/public/gameStart-bundle.js')
 })
 
+// app.get("/index.pck", (req, res) => {
+//   res.sendFile(__dirname + '/public/Index.pck')
+// })
+
+// app.get("/index.wasm", (req, res) => {
+//   res.sendFile(__dirname + '/public/Index.wasm')
+// })
+// app.get("/Resources.pck", (req, res) => {
+//   res.sendFile(__dirname + '/public/Resources.pck')
+// })
+
 app.get("/index.pck", (req, res) => {
-  res.sendFile(__dirname + '/public/Index.pck')
+  const filePath = __dirname + '/public/Index.pck'
+  const stat = fs.statSync(filePath);
+
+  res.writeHead(200, {
+    'Content-Type': 'application/pdf', // Adjust content type as needed
+    'Content-Length': stat.size,
+    'Content-Disposition': 'attachment; filename="Index.pck"'
+  })
+  const readStream = fs.createReadStream(filePath);
+  readStream.pipe(res);
+})
+app.get("/index.wasm", (req, res) => {
+  const filePath = __dirname + '/public/Index.wasm'
+  const stat = fs.statSync(filePath);
+
+  res.writeHead(200, {
+    'Content-Type': 'application/pdf', // Adjust content type as needed
+    'Content-Length': stat.size,
+    'Content-Disposition': 'attachment; filename="Index.wasm"'
+  })
+  const readStream = fs.createReadStream(filePath);
+  readStream.pipe(res);
 })
 
-app.get("/index.wasm", (req, res) => {
-  res.sendFile(__dirname + '/public/Index.wasm')
+app.get('/public/Resources.pck', (req, res) => {
+  const filePath = __dirname + '/public/Resources.pck'
+  const stat = fs.statSync(filePath);
+
+  res.writeHead(200, {
+    'Content-Type': 'application/pdf', // Adjust content type as needed
+    'Content-Length': stat.size,
+    'Content-Disposition': 'attachment; filename="Resources.pck"'
+  })
+  const readStream = fs.createReadStream(filePath);
+  readStream.pipe(res);
 })
+
 app.get("/Resources.pck", (req, res) => {
   res.sendFile(__dirname + '/public/Resources.pck')
 })
-
 
 //essa request retorna o ip do server, por algum motivo essa biblioteca demora muito para retornar o ip, então eu decidi simplesmente mandar o node esperar um tempo x 💀
 console.log("Finding this computer's ip adress:")
