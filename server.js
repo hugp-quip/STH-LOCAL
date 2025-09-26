@@ -26,6 +26,7 @@ var app = express();
 const server = https.createServer(options, app);
 server.listen(configs.port);
 server.keepAliveTimeout = configs.keepAliveTimeout;
+server.headersTimeout = configs.headersTimeout; 
 console.log("Server listening at: https://localhost:" + configs.port)
 
 app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
