@@ -8,6 +8,8 @@ import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import os from "os";
+import configs from "./server_config";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -22,8 +24,8 @@ var app = express();
 
 // Create an HTTP service.
 const server = https.createServer(options, app);
-server.listen(8080);
-console.log("Server listening at: https://localhost:8080")
+server.listen(configs.port);
+console.log("Server listening at: https://localhost:" + configs.port)
 
 app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
 
@@ -67,7 +69,7 @@ let serverIpAddress;
 //   }
 //   return null; // No suitable IP address found
 // }
-serverIpAddress = "yeah"//getLocalIpAddress();
+serverIpAddress = configs.ip//getLocalIpAddress();
 
 app.get("/server_ip", async (req, res)=>{
   console.log("ip-fetched: "+serverIpAddress)
