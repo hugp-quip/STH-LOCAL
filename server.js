@@ -7,8 +7,7 @@ import https from "https";
 import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import network from "network"
-
+import os from "os";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -55,11 +54,20 @@ app.get("/Resources.pck", (req, res) => {
 //essa request retorna o ip do server, por algum motivo essa biblioteca demora muito para retornar o ip, então eu decidi simplesmente mandar o node esperar um tempo x 💀
 console.log("Finding this computer's ip adress:")
 let serverIpAddress;
-network.get_private_ip((err, ip) => {
-    serverIpAddress = ip
-    console.log("final-ip-found: "+serverIpAddress)
-    console.log("ip-find-error: "+err)
-})
+// function getLocalIpAddress() {
+//   const networkInterfaces = os.networkInterfaces();
+//   for (const interfaceName in networkInterfaces) {
+//     const networkInterface = networkInterfaces[interfaceName];
+//     for (const iface of networkInterface) {
+//       // Filter out internal and non-IPv4 addresses
+//       if (iface.family === 'IPv4' && !iface.internal) {
+//         return iface.address;
+//       }
+//     }
+//   }
+//   return null; // No suitable IP address found
+// }
+serverIpAddress = "yeah"//getLocalIpAddress();
 
 app.get("/server_ip", async (req, res)=>{
   console.log("ip-fetched: "+serverIpAddress)
