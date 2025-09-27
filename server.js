@@ -50,15 +50,16 @@ app.get("/scripts/qrcode", (req, res)=>{
 
 app.get("/scripts/gameStart", (req, res)=>{
   console.log("gamestart")
-  res.sendFile(__dirname + '/public/gameStart-bundle.js')
+  res.sendFile(__dirname + '/public/gameStart-bundle.js', (err) => { console.log(err)})
 })
 
 app.get("/index.pck", (req, res) => {
-  res.sendFile(__dirname + '/public/Index.pck')
+  res.sendFile(__dirname + '/public/Index.pck', (err) => { console.log(err)})
+  
 })
 
 app.get("/index.wasm", (req, res) => {
-  res.sendFile(__dirname + '/public/Index.wasm')
+  res.sendFile(__dirname + '/public/Index.wasm', (err) => { console.log(err)})
 })
 
 // app.get("/Resources.pck", (req, res) => {
