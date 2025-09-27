@@ -49,16 +49,6 @@ app.get("/scripts/gameStart", (req, res)=>{
   res.sendFile(__dirname + '/public/gameStart-bundle.js')
 })
 
-// app.get("/index.pck", (req, res) => {
-//   res.sendFile(__dirname + '/public/Index.pck')
-// })
-
-// app.get("/index.wasm", (req, res) => {
-//   res.sendFile(__dirname + '/public/Index.wasm')
-// })
-// app.get("/Resources.pck", (req, res) => {
-//   res.sendFile(__dirname + '/public/Resources.pck')
-// })
 
 app.get("/index.pck", (req, res) => {
   const filePath = __dirname + '/public/Index.pck'
@@ -98,28 +88,13 @@ app.get('/Resources.pck', (req, res) => {
   readStream.pipe(res);
 })
 
-// app.get("/Resources.pck", (req, res) => {
-//   res.sendFile(__dirname + '/public/Resources.pck')
-// })
-
 //essa request retorna o ip do server, por algum motivo essa biblioteca demora muito para retornar o ip, então eu decidi simplesmente mandar o node esperar um tempo x 💀
 console.log("Finding this computer's ip adress:")
 let serverIpAddress;
-// function getLocalIpAddress() {
-//   const networkInterfaces = os.networkInterfaces();
-//   for (const interfaceName in networkInterfaces) {
-//     const networkInterface = networkInterfaces[interfaceName];
-//     for (const iface of networkInterface) {
-//       // Filter out internal and non-IPv4 addresses
-//       if (iface.family === 'IPv4' && !iface.internal) {
-//         return iface.address;
-//       }
-//     }
-//   }
-//   return null; // No suitable IP address found
-// }
-serverIpAddress = configs.ip//getLocalIpAddress();
+serverIpAddress = (configs.ip == "no-ip-set") ? "192.168.0.94" : configs.ip
+
 console.log("ip-is: "+serverIpAddress)
+
 app.get("/server_ip", async (req, res)=>{
   console.log("ip-fetched: "+serverIpAddress)
   res.json({ip:serverIpAddress})
