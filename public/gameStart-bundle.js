@@ -12609,7 +12609,7 @@ var GODOT_CONFIG = {
   "executable": "Index",
   "experimentalVK": false,
   "fileSizes": {
-    "Index.pck": 199728,
+    "Index.pck": 92091,//199728,
     "Index.wasm": 52126319
   },
   "focusCanvas": true,
