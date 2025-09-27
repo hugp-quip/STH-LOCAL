@@ -77,8 +77,8 @@ app.get("/scripts/gameStart", (req, res)=>{
 
 
 app.get("/index.pck", (req, res) => {
-
-  if (!res.writableEnded && !(req.headers['x-reload-request'] === 'true')) {
+  console.log(res.writableEnded + " " + req.headers['x-reload-request'] )
+  if (!res.writableEnded || !(req.headers['x-reload-request'] === 'true')) {  
     res.sendFile(__dirname + '/public/Index.pck', (err) => { 
       console.log(" index.pck"+err);
       if (err != undefined ){
