@@ -88,7 +88,7 @@ app.get("/index.pck", (req, res) => {
     })
   } else {
     console.log("redirected")
-    res.redirect("301", "/index.pck")
+    //res.redirect("301", "/index.pck")
   }
 })
 
