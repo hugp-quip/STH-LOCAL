@@ -29,9 +29,13 @@ server.keepAliveTimeout = configs.keepAliveTimeout;
 server.headersTimeout = configs.headersTimeout; 
 console.log("Server listening at: https://localhost:" + configs.port)
 
-app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/index.html")})
-
 app.get("/", (req, res) => {
+  res.json({text:"Tente entrar em /teacher ou /classmate!"})
+})
+
+app.get("/teacher", (req, res, next) => {console.log("teacher"); res.sendFile(__dirname+"/src/teacher-page.html")})
+
+app.get("/classmate", (req, res) => {
   try {
     console.log("classmate"); res.sendFile(__dirname+"/public/Index.html")
   } catch (err) {
@@ -41,7 +45,7 @@ app.get("/", (req, res) => {
 
 app.get("/scripts/qrcode", (req, res)=>{
   //console.log("asdfadfgasdg")
-  res.sendFile(__dirname + '/bundle.js')
+  res.sendFile(__dirname + '/src/qrcodeGEN-bundle.js')
 })
 
 app.get("/scripts/gameStart", (req, res)=>{

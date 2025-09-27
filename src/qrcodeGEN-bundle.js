@@ -9,7 +9,7 @@ async function callFetchServerIpAdress() {
 async function callcallFetchServerIpAdress(QRCode, canvas) {
   serverIpAddress = await callFetchServerIpAdress();
   
-  QRCode.toCanvas(canvas, "https://" + serverIpAddress + ':8080', function (error) {
+  QRCode.toCanvas(canvas, "https://" + serverIpAddress + ':8080/classmate', function (error) {
   if (error) console.error(error);
   console.log('success!');
 });
@@ -2856,13 +2856,17 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
 //import QRCode from "node-qrcode"
 var QRCode = require("qrcode");
 
+const ipconvertfunc = (_ip) => {return "https://" + _ip.value + ':8080/classmate'}
+
 var updateqrcode = () => {
   var QRCode = require("qrcode");
   var canvas = document.getElementById('canvas');
-  var ip_label = document.getElementById("ip-label")
+  var currentIpText = document.getElementById("current-ip")
   var ip = document.getElementById("ip-input");
 
-  QRCode.toCanvas(canvas, "https://" + ip.value + ':8080', 
+  currentIpText.innerHTML = "Site: " + ipconvertfunc(ip)
+
+  QRCode.toCanvas(canvas, ipconvertfunc(ip), {margin:0},
     function (error) {
     if (error) console.error(error);
     //console.log('success!');
