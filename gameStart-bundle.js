@@ -11999,7 +11999,7 @@ var Engine = function () {
         this.config.args = ['--main-pack', pack].concat(this.config.args);
         // Start and init with execName as loadPath if not inited.
         var me = this;
-        return Promise.all([this.init(exe), this.preloadFile(pack, pack), this.preloadFile("Resources.pck")]).then(function () {
+        return Promise.all([this.init(exe), this.preloadFile(pack, pack), /*this.preloadFile("Resources.pck")*/]).then(function () {
           return me.start.apply(me);
         });
       },
@@ -12087,7 +12087,7 @@ var GODOT_CONFIG = {
   "executable": "Index",
   "experimentalVK": false,
   "fileSizes": {
-    "Index.pck": 199728,
+    "Index.pck": 98449344,
     "Index.wasm": 52126319
   },
   "focusCanvas": true,
