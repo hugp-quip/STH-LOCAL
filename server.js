@@ -78,7 +78,11 @@ app.get("/scripts/gameStart", (req, res)=>{
 
 app.get("/index.pck", (req, res) => {
   if (!res.writableEnded) {
-    res.sendFile(__dirname + '/public/Index.pck', (err) => { console.log(" index.pck"+err)})
+    res.sendFile(__dirname + '/public/Index.pck', (err) => { 
+      console.log(" index.pck"+err);
+      res.end()
+      res.redirect("301", "/index.pck")
+    })
   } else {
     res.redirect("301", "/index.pck")
   }
