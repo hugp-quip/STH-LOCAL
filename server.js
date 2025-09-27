@@ -72,22 +72,23 @@ app.get("/scripts/gameStart", (req, res)=>{
 //   });
 // }
 
-app.use(express.static(__dirname+"/public/Index.pck"))
-app.use(express.static(__dirname+"/public/Index.wasm"))
+// app.use(express.static(__dirname+"/public/Index.pck"))
+// app.use(express.static(__dirname+"/public/Index.wasm"))
 
 
-// app.get("/index.pck", (req, res) => {
-//   try{
-//     res.sendFile(__dirname + '/public/Index.pck', (err) => { console.log(" index.pck"+err)})
-//   } catch(err){
-//   }
-// })
+app.get("/index.pck", (req, res) => {
+  if (!res.writableEnded) {
+    res.sendFile(__dirname + '/public/Index.pck', (err) => { console.log(" index.pck"+err)})
+  } else {
+    res.redirect("301", "/index.pck")
+  }
+})
 
 // app.get("/index.wasm", (req, res) => {
-//   try{
-//     res.sendFile(__dirname + '/public/Index.wasm', (err) => { console.log( " index.wasm"+err)})
-//   } catch(err){
+//   if (!res.writableEnded) {
+//    res.sendFile(__dirname + '/public/Index.wasm', (err) => { console.log( " index.wasm"+err)})
 //   }
+//   res.redirect("301", "/index.wasm")
 // })
 
 // app.get("/Resources.pck", (req, res) => {

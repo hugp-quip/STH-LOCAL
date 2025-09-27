@@ -990,7 +990,7 @@ exports["default"] = void 0;
               var _Module$onAbort;
               (_Module$onAbort = Module["onAbort"]) === null || _Module$onAbort === void 0 || _Module$onAbort.call(Module, what);
               what = "Aborted(" + what + ")";
-              //err(what);
+              err(what);
               ABORT = true;
               EXITSTATUS = 1;
               what += ". Build with -sASSERTIONS for more info.";
