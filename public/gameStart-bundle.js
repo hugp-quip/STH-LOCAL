@@ -12616,9 +12616,10 @@ var GODOT_CONFIG = {
   "gdextensionLibs": []
 };
 var GODOT_THREADS_ENABLED = false;
-console.log(Object.keys(GDT))
+//console.log(Object.keys(GDT))
 
 var engine = new Engine(GODOT_CONFIG);
+try {
 (function () {
   var statusOverlay = document.getElementById('status');
   var statusProgress = document.getElementById('status-progress');
@@ -12714,5 +12715,7 @@ var engine = new Engine(GODOT_CONFIG);
     }, displayFailureNotice);
   }
 })();
-
+} catch (err) {
+  console.log("gameStart error: " + err)
+}
 },{"./Godot-bundle":3}]},{},[4]);
