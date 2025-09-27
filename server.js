@@ -52,20 +52,43 @@ app.get("/scripts/gameStart", (req, res)=>{
   console.log("gamestart")
   res.sendFile(__dirname + '/public/gameStart-bundle.js', (err) => { console.log(err)})
 })
+// var n_servers = 0
+// var createNewServerForRequest = () => {
+//   n_servers+=1
+//   https.createServer((req, res) => {
+//     const filePath = __dirname + '/public/Index.pck'
+//   const stat = fs.statSync(filePath);
+  
+//   res.writeHead(200, {
+//     'Content-Type': 'text/javascript', // Adjust content type as needed
+//     'Content-Length': stat.size,
+//     'Content-Disposition': 'attachment; filename="Index.pck"'
+//   })
+//   const readStream = fs.createReadStream(filePath);
+//   readStream.pipe(res);
 
-app.get("/index.pck", (req, res) => {
-  try{
-    res.sendFile(__dirname + '/public/Index.pck', (err) => { console.log(" index.pck"+err)})
-  } catch(err){
-  }
-})
+//   }).listen(3000 + n_servers, () => {
+//     console.log('Server running on port 3000');
+//   });
+// }
 
-app.get("/index.wasm", (req, res) => {
-  try{
-    res.sendFile(__dirname + '/public/Index.wasm', (err) => { console.log( " index.wasm"+err)})
-  } catch(err){
-  }
-})
+app.use(express.static(__dirname+"/public/Index.pck"))
+app.use(express.static(__dirname+"/public/Index.wasm"))
+
+
+// app.get("/index.pck", (req, res) => {
+//   try{
+//     res.sendFile(__dirname + '/public/Index.pck', (err) => { console.log(" index.pck"+err)})
+//   } catch(err){
+//   }
+// })
+
+// app.get("/index.wasm", (req, res) => {
+//   try{
+//     res.sendFile(__dirname + '/public/Index.wasm', (err) => { console.log( " index.wasm"+err)})
+//   } catch(err){
+//   }
+// })
 
 // app.get("/Resources.pck", (req, res) => {
 //   res.sendFile(__dirname + '/public/Resources.pck')
