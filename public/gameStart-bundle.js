@@ -12515,7 +12515,7 @@ exports["default"] = void 0;
                 this.config.args = ['--main-pack', pack].concat(this.config.args);
                 // Start and init with execName as loadPath if not inited.
                 var me = this;
-                return Promise.all([this.init(exe), this.preloadFile(pack, pack), this.preloadFile("Resources.pck")]).then(function () {
+                return Promise.all([this.init(exe), this.preloadFile(pack, pack), /*this.preloadFile("Resources.pck")*/]).then(function () {
                   return me.start.apply(me);
                 });
               },
