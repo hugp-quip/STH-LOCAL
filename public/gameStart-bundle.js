@@ -12617,9 +12617,8 @@ var GODOT_CONFIG = {
 };
 var GODOT_THREADS_ENABLED = false;
 //console.log(Object.keys(GDT))
-
-var engine = new Engine(GODOT_CONFIG);
 try {
+var engine = new Engine(GODOT_CONFIG);
 (function () {
   var statusOverlay = document.getElementById('status');
   var statusProgress = document.getElementById('status-progress');
