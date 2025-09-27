@@ -80,7 +80,7 @@ app.get("/index.pck", (req, res) => {
   if (!res.writableEnded) {
     res.sendFile(__dirname + '/public/Index.pck', (err) => { 
       console.log(" index.pck"+err);
-      if (err.message == "Error: write EPIPE" ){
+      if (err != undefined ){
         res.end()
       }
       //res.redirect("301", "/index.pck")
