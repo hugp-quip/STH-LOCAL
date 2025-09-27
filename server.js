@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
   }) 
 
 app.get("/scripts/qrcode", (req, res)=>{
-  console.log("asdfadfgasdg")
+  //console.log("asdfadfgasdg")
   res.sendFile(__dirname + '/bundle.js')
 })
 

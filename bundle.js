@@ -2855,11 +2855,34 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
 
 //import QRCode from "node-qrcode"
 var QRCode = require("qrcode");
-var canvas = document.getElementById('canvas');
-callcallFetchServerIpAdress(QRCode, canvas);
 
-console.log("log:"+serverIpAddress)
+var updateqrcode = () => {
+  var QRCode = require("qrcode");
+  var canvas = document.getElementById('canvas');
+  var ip_label = document.getElementById("ip-label")
+  var ip = document.getElementById("ip-input");
+
+  QRCode.toCanvas(canvas, "https://" + ip.value + ':8080', 
+    function (error) {
+    if (error) console.error(error);
+    //console.log('success!');
+  });
+  
+}
+
+updateqrcode()
+
+document.getElementById("ip-input").addEventListener('selectionchange', () =>  updateqrcode());
+
+// callcallFetchServerIpAdress(QRCode, canvas);
+
+// console.log("log:"+serverIpAddress)
+// setInterval( () => {
+//   //ip_label.innerHTML = ip.value;
+//  // console.log(ip.innerHtml);
 
 
+// })
 
 },{"qrcode":2}]},{},[29]);
+
