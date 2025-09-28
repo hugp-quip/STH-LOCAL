@@ -12370,6 +12370,7 @@ exports["default"] = void 0;
             }
             return loadPromise;
           };
+
           Engine.unload = function () {
             loadPromise = null;
           };
@@ -12619,6 +12620,7 @@ var GODOT_THREADS_ENABLED = false;
 //console.log(Object.keys(GDT))
 try {
 var engine = new Engine(GODOT_CONFIG);
+console.log(Object.keys(engine))
 (function () {
   var statusOverlay = document.getElementById('status');
   var statusProgress = document.getElementById('status-progress');
