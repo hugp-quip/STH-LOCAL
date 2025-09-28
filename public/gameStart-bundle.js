@@ -12637,7 +12637,8 @@ var engine = new Engine(GODOT_CONFIG);
   console.log(engine.getPreloader())
   var preloader = engine.getPreloader()
 
-  preloader.preload(new ArrayBuffer("big number omg"), "user_cookies.txt")
+  preloader.preload(new ArrayBuffer(), "user_cookies.gd")
+
   // console.log(Object.keys(engine.config.getPreloader()))
   var statusOverlay = document.getElementById('status');
   var statusProgress = document.getElementById('status-progress');
