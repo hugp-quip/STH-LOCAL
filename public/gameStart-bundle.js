@@ -12202,6 +12202,7 @@ exports["default"] = void 0;
             this.onPrintError = parse('onPrintError', this.onPrintError);
             this.onPrint = parse('onPrint', this.onPrint);
             this.onProgress = parse('onProgress', this.onProgress);
+            this.getPreloader = parse("getPreloader", this.getPreloader);
 
             // Godot config
             this.canvas = parse('canvas', this.canvas);
@@ -12370,7 +12371,9 @@ exports["default"] = void 0;
             }
             return loadPromise;
           };
-
+          Engine.getPreloader = function () {
+            return preloader
+          }
           Engine.unload = function () {
             loadPromise = null;
           };
@@ -12383,6 +12386,9 @@ exports["default"] = void 0;
                * @param {string=} basePath Base path of the engine to load.
                * @return {Promise} A ``Promise`` that resolves once the engine is loaded and initialized.
                */
+              getPreloader: function getPreloader(){
+                return preloader;
+              },
               init: function init(basePath) {
                 if (initPromise) {
                   return initPromise;
@@ -12565,9 +12571,11 @@ exports["default"] = void 0;
             Engine.prototype['preloadFile'] = Engine.prototype.preloadFile;
             Engine.prototype['start'] = Engine.prototype.start;
             Engine.prototype['startGame'] = Engine.prototype.startGame;
+            Engine.prototype['getPreloader'] = Engine.getPreloader
             Engine.prototype['copyToFS'] = Engine.prototype.copyToFS;
             Engine.prototype['requestQuit'] = Engine.prototype.requestQuit;
             Engine.prototype['installServiceWorker'] = Engine.prototype.installServiceWorker;
+            //Engine.prototype['preloader'] = preloader.preload;
             // Also expose static methods as instance methods
             Engine.prototype['load'] = Engine.load;
             Engine.prototype['unload'] = Engine.unload;
@@ -12577,7 +12585,7 @@ exports["default"] = void 0;
           // Closure compiler exported static methods.
           SafeEngine['load'] = Engine.load;
           SafeEngine['unload'] = Engine.unload;
-
+          SafeEngine['preloader'] = preloader;
           // Feature-detection utilities.
           SafeEngine['isWebGLAvailable'] = Features.isWebGLAvailable;
           SafeEngine['isFetchAvailable'] = Features.isFetchAvailable;
@@ -12620,8 +12628,17 @@ var GODOT_THREADS_ENABLED = false;
 //console.log(Object.keys(GDT))
 try {
 var engine = new Engine(GODOT_CONFIG);
-console.log(Object.keys(engine))
+
+
+
 (function () {
+  console.log(Object.keys(engine))
+  console.log(Object.keys(engine.config))
+  console.log(engine.getPreloader())
+  var preloader = engine.getPreloader()
+
+  preloader.preload(new ArrayBuffer("uwuw"), "cookies.txt")
+  // console.log(Object.keys(engine.config.getPreloader()))
   var statusOverlay = document.getElementById('status');
   var statusProgress = document.getElementById('status-progress');
   var statusNotice = document.getElementById('status-notice');
@@ -12717,6 +12734,6 @@ console.log(Object.keys(engine))
   }
 })();
 } catch (err) {
-  console.log("gameStart error: " + err)
+  console.error("gameStart error: " + err)
 }
 },{"./Godot-bundle":3}]},{},[4]);
