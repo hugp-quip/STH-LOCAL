@@ -12626,6 +12626,9 @@ var GODOT_CONFIG = {
 };
 var GODOT_THREADS_ENABLED = false;
 //console.log(Object.keys(GDT))
+
+
+
 try {
 var engine = new Engine(GODOT_CONFIG);
 
@@ -12636,8 +12639,13 @@ var engine = new Engine(GODOT_CONFIG);
   console.log(Object.keys(engine.config))
   console.log(engine.getPreloader())
   var preloader = engine.getPreloader()
-
-  preloader.preload(new ArrayBuffer(), "user_cookies.gd")
+  var loadCookiesIntoGame = (data) => {
+    var encoder = new TextEncoder();
+    var encodedData = encoder.encode("class_name "+data).buffer
+    
+    preloader.preload(encodedData, "user_cookies.gd")
+  }
+  loadCookiesIntoGame("NOCOOKIES") // the game will scream in the terminal if there isn't at least one cookies loaded.
 
   // console.log(Object.keys(engine.config.getPreloader()))
   var statusOverlay = document.getElementById('status');
