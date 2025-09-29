@@ -12635,8 +12635,8 @@ var engine = new Engine(GODOT_CONFIG);
 
 
 (function () {
-  console.log(Object.keys(engine))
-  console.log(Object.keys(engine.config))
+  // console.log(Object.keys(engine))
+  // console.log(Object.keys(engine.config))
   console.log(engine.getPreloader())
   var preloader = engine.getPreloader()
   var loadCookiesIntoGame = (data) => {
