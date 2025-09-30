@@ -7,7 +7,7 @@ import https from "https";
 import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import os from "os";
+//import cache from 'cache-control' 
 import configs from "./server_config.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -82,9 +82,14 @@ app.get("/server_ip", async (req, res)=>{
   console.log("ip-fetched: "+serverIpAddress)
   res.json({ip:serverIpAddress})
 })
+app.get("/scripts", (req, res) => {
+  console.log(req.body)
+})
+
 //app.use(cors)
 app.use(express.json())
 app.use(express.static('node_modules'));
 app.use(express.static("public/Index.pck"))
+//app.use(cache({"/public/Index.pck":1000}))
 app.use(express.static('src'));
 app.use(express.static('public'));

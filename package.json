@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "browserify": "^17.0.1",
+    "cache-control": "^2.0.0",
     "express": "^5.1.0",
     "internal-ip": "^8.0.0",
     "network": "^0.7.0",
